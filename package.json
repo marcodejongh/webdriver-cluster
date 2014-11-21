@@ -1,0 +1,46 @@
+{
+  "name": "webdriver-cluster",
+  "description": "The best project ever.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/marcodejongh/webdriver-cluster",
+  "author": {
+    "name": "Marco de Jongh",
+    "email": "marco.dejongh@gfk.com",
+    "url": "https://github.com/marcodejongh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/marcodejongh/webdriver-cluster.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marcodejongh/webdriver-cluster/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/marcodejongh/webdriver-cluster/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/webdriver-cluster",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt nodeunit"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt": "~0.4.5"
+  },
+  "keywords": [],
+  "dependencies": {
+    "chai": "^1.10.0",
+    "compute-cluster": "0.0.9",
+    "glob": "^4.2.0",
+    "selenium-webdriver": "^2.44.0",
+    "underscore": "^1.7.0",
+    "yadda": "^0.11.2"
+  }
+}
