@@ -26,7 +26,11 @@ var Steps = {
 					var self = this;
 					var promise = webdriver.promise.defer();
 					this.driver.getTitle().then(function(title) {
-						expect(expected).to.equal(title);
+						try {
+							expect(expected).to.equal(title);
+						} catch (e) {
+							self.done(e);
+						}
 
 						promise.fulfill();
 					});
@@ -34,12 +38,17 @@ var Steps = {
 				})
 				.then("I should see a $element", function (element) {
 					var self = this;
+					var elementSelector = ctx.getElementFromView(element);
 					var promise = webdriver.promise.defer();
 					var error;
-					this.driver.getTitle().then(function(title) {
+					this.driver.findElement(webdriver.By.css(elementSelector)).then(function(title) {
+						try {
+							expect('123').to.equal('123456');
+						} catch (e) {
+							self.done(e);
+						}
 
-
-						promise.fulfill({});
+						promise.fulfill();
 					});
 					return promise;
 
@@ -49,7 +58,12 @@ var Steps = {
 					var self = this;
 					var promise = webdriver.promise.defer();
 					this.driver.findElement(webdriver.By.css(elementSelector)).getText().then(function(text) {
-						expect(text).to.contain(title);
+						try {
+							expect(text).to.contain(title);
+						} catch (e) {
+							self.done(e);
+						}
+
 						promise.fulfill();
 					});
 					return promise;
@@ -63,10 +77,16 @@ var Steps = {
 					webElement
 						.click()
 						.then(function () {
-							webElement.sendKeys(text).then(function() {
-								self.driver.sleep(5000).then(function () {})
-								promise.fulfill();
-							});
+							try {
+								webElement.sendKeys(text).then(function() {
+									self.driver.sleep(500).then(function () {})
+									promise.fulfill();
+								});
+							} catch (e) {
+								self.done(e);
+							}
+
+
 						});
 
 					return promise;

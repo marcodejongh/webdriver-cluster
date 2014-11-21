@@ -13,6 +13,7 @@
 var computecluster = require('compute-cluster');
 var glob = require('glob');
 var config = require('../webdriver-cluster.json');
+var _ = require('underscore');
 
 // allocate a compute cluster
 var cc = new computecluster({
@@ -28,18 +29,39 @@ cc.on('debug', function(e) { console.log('DEBUG:', e); });
 var features = glob.sync(config.features_path)
 
 var toRun = features.length;
+var allResults = [];
+
+function printReport (results) {
+    _.each(results, function (result) {
+        console.log('\n\n##############################################');
+        console.log('######     ' + result.featureFile + '########');
+        console.log('##############################################\n\n');
+
+        _.each(result.result, function (item) {
+            console.log(item);
+        });
+
+    });
+}
+
 
 features.forEach(function (file) {
     var message = {
         path: file
     };
-    console.log(file);
     cc.enqueue(message, function(err, r) {
         if (err) console.log("an error occured:", err);
         else {
-            console.log(r);
+            allResults.push({
+                featureFile: file,
+                result: r
+            });
         }
 
-        if (--toRun === 0) cc.exit();
+        if (--toRun === 0) {
+            printReport(allResults);
+
+            cc.exit();
+        }
     });
 });
