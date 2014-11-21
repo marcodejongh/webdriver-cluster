@@ -3,4 +3,8 @@ node_js:
   - 0.8
   - '0.10'
 before_script:
-  - npm install -g grunt-cli
+  - npm install
+  - java -jar node_modules/selenium-server-standalone-jar/jar/selenium-server-standalone-2.43.1.jar -role hub --verbose --port 5555 &
+  - java -jar node_modules/selenium-server-standalone-jar/jar/selenium-server-standalone-2.43.1.jar -role webdriver --verbose --port 5555 &
+script:
+  - ./bin/webdriver-cluster.js
