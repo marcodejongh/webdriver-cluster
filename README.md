@@ -1,14 +1,11 @@
-# webdriver-cluster [![Build Status](https://secure.travis-ci.org/mojong/webdriver-cluster.png?branch=master)](http://travis-ci.org/mojong/webdriver-cluster)
+# webdriver-cluster [![Build Status](https://secure.travis-ci.org/marcodejongh/webdriver-cluster.png?branch=master)](http://travis-ci.org/mojong/webdriver-cluster)
 
-The best project ever.
+Selenium-webdriverjs test runner designed for BDD and Parralel test execution from the ground up.
 
 ## Getting Started
-Install the module with: `npm install webdriver-cluster`
 
-```javascript
-var webdriver_cluster = require('webdriver-cluster');
-webdriver_cluster.awesome(); // "awesome"
-```
+
+_(Coming soon)_
 
 ## Documentation
 _(Coming soon)_
@@ -23,5 +20,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 _(Nothing yet)_
 
 ## License
-Copyright (c) 2014 Marco de Jongh  
+Copyright (c) 2014 Marco de Jongh
 Licensed under the MIT license.
