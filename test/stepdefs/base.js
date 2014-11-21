@@ -1,6 +1,7 @@
 var webdriver = require('selenium-webdriver');
 var chai = require('chai');
 var expect = chai.expect;
+var _ = require('underscore');
 
 var Steps = {
 	using: function(library, ctx) {
@@ -41,15 +42,22 @@ var Steps = {
 					var elementSelector = ctx.getElementFromView(element);
 					var promise = webdriver.promise.defer();
 					var error;
-					this.driver.findElement(webdriver.By.css(elementSelector)).then(function(title) {
+
+					var webElement = this.driver.findElement(webdriver.By.css(elementSelector)).isDisplayed().then(function (value) {
+						process.stderr.write("DONE " + _.keys(arguments[0]) +"\n");
+						process.stderr.write("DONE " + elementSelector +"\n");
+
 						try {
-							expect('123').to.equal('123456');
+							expect(value).to.equal(true);
 						} catch (e) {
 							self.done(e);
 						}
 
 						promise.fulfill();
 					});
+
+
+
 					return promise;
 
 				})
@@ -57,6 +65,7 @@ var Steps = {
 					var elementSelector = ctx.getElementFromView(element);
 					var self = this;
 					var promise = webdriver.promise.defer();
+
 					this.driver.findElement(webdriver.By.css(elementSelector)).getText().then(function(text) {
 						try {
 							expect(text).to.contain(title);

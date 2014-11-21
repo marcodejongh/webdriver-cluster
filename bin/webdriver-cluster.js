@@ -14,6 +14,7 @@ var computecluster = require('compute-cluster');
 var glob = require('glob');
 var config = require('../webdriver-cluster.json');
 var _ = require('underscore');
+var terminal = require('color-terminal');
 
 // allocate a compute cluster
 var cc = new computecluster({
@@ -33,12 +34,29 @@ var allResults = [];
 
 function printReport (results) {
     _.each(results, function (result) {
-        console.log('\n\n##############################################');
-        console.log('######     ' + result.featureFile + '########');
-        console.log('##############################################\n\n');
+        terminal.color('magenta').write('\n\n###### ' + _.last(result.featureFile.split('/')) + ' ########\n');
+
 
         _.each(result.result, function (item) {
-            console.log(item);
+            var color;
+            var message = item.message;
+            switch (item.type) {
+                case 'error':
+                    color = 'red';
+                    break;
+                case 'step':
+                    color = 'green';
+                    break;
+                case 'scenario':
+                    color = 'blue';
+                    message = '\n' + message;
+                    break;
+                default:
+                    color = 'white';
+                    break;
+            }
+
+            terminal.color(color).write(message + '\n');
         });
 
     });

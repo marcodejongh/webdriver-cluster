@@ -15,3 +15,4 @@ Feature: DuckDuckGo Demo
      And I should see a search box
      And I should see a search button
      And I should see a #logo_homepage_link
+     And I should see a #logo_BLABLA
