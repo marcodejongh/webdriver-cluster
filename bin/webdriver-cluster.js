@@ -18,7 +18,7 @@ var terminal = require('color-terminal');
 
 // allocate a compute cluster
 var cc = new computecluster({
-  module: './lib/worker.js'
+  module: './lib/mochaworker.js'
 });
 
 
